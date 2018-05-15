@@ -10,7 +10,7 @@ for (i=0; i < topics.length; i++) {
 //onclick of button, grab 10 static images and place on page
 $("#buttons").on("click", ".button", function() {
     var topic = $(this).attr("topic")
-    var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=zG4Nmv7IC78maeigWZU0BtIY2UUQN8c4&q="+topic
+    var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=zG4Nmv7IC78maeigWZU0BtIY2UUQN8c4&q="+topic;
     $.ajax({
         url: queryURL,
         method:"GET"
@@ -19,17 +19,52 @@ $("#buttons").on("click", ".button", function() {
         for (j = 0; j < 10; j++) {
             var image = $("<img>");
             image.attr("src", response.data[j].images.fixed_height_still.url);
-            image.attr("stillURL", response.data[j].images.fixed_height_still.url);
+            image.attr("class", "club");
+            image.attr("wallflowerURL", response.data[j].images.fixed_height_still.url);
+            image.attr("danceURL", response.data[j].images.fixed_height.url)
+            image.attr("status", "wallflower")
+            var box = $(`<div class="col-md-4 col-xs-12">`);
+            box.attr("id", response.data[j].id);
+            var rating = $("<div>");
+            rating.attr("class", "rating");
+            rating.text("Rating: "+response.data[j].rating)
             //add more attributes
-
-            image.appendTo($("#gifs"));
+            box.appendTo($("#gifs"));
+            image.appendTo($("#"+response.data[j].id));
+            rating.appendTo($("#"+response.data[j].id));
         }
     })
 })
+
+$("#gifs").on("click", ".club", function() {
+    if ($(this).attr("status") == "wallflower") {
+        $(this).attr("src", $(this).attr("danceURL"));
+        $(this).attr("status", "dance")
+    }
+    else if ($(this).attr("status") == "dance") {
+        $(this).attr("src", $(this).attr("wallflowerurl"));
+        $(this).attr("status", "wallflower")
+    }
+})
+
+$("#submit-button").on("click", function() {
+    event.preventDefault()
+    $("#buttons").empty();
+    topics.push($("#new-input").val());
+    for (i=0; i < topics.length; i++) {
+        var butt = $("<button>");
+        butt.attr("class", "button");
+        butt.attr("topic", topics[i]);
+        butt.text(topics[i]);
+        butt.appendTo("#buttons");
+    }
+});
+
 //under each gif, place its rating (g, pg, r)
 
 //onclick of gif, toggle between animate and still
-
+    //on click, if status = still, then change source, change status
+    //else if status  = dance, change source,) change status
 
 
 //form to take value from inputbox and add to topics array, remake buttons.
