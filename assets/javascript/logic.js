@@ -1,5 +1,5 @@
-var topics = ["dota", "hearthstone", "stardew valley", "motorcycles", "skydiving"]
-//take topics in array and create buttons in html
+var topics = ["dota", "hearthstone", "stardew valley", "motorcycles", "skydiving", "kvothe"]
+
 for (i=0; i < topics.length; i++) {
     var butt = $("<button>");
     butt.attr("class", "button");
@@ -7,7 +7,7 @@ for (i=0; i < topics.length; i++) {
     butt.text(topics[i]);
     butt.appendTo("#buttons");
 }
-//onclick of button, grab 10 static images and place on page
+
 $("#buttons").on("click", ".button", function() {
     var topic = $(this).attr("topic")
     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=zG4Nmv7IC78maeigWZU0BtIY2UUQN8c4&q="+topic;
@@ -28,7 +28,6 @@ $("#buttons").on("click", ".button", function() {
             var rating = $("<div>");
             rating.attr("class", "rating");
             rating.text("Rating: "+response.data[j].rating)
-            //add more attributes
             box.appendTo($("#gifs"));
             image.appendTo($("#"+response.data[j].id));
             rating.appendTo($("#"+response.data[j].id));
@@ -66,12 +65,3 @@ $("#submit-button").on("click", function() {
 $("#new-input").on("click", function() {
     $("#new-input").val("");
 });
-
-//under each gif, place its rating (g, pg, r)
-
-//onclick of gif, toggle between animate and still
-    //on click, if status = still, then change source, change status
-    //else if status  = dance, change source,) change status
-
-
-//form to take value from inputbox and add to topics array, remake buttons.
