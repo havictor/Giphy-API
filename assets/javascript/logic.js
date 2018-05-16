@@ -10,7 +10,7 @@ for (i=0; i < topics.length; i++) {
 //onclick of button, grab 10 static images and place on page
 $("#buttons").on("click", ".button", function() {
     var topic = $(this).attr("topic")
-    var queryURL = "http://api.giphy.com/v1/gifs/search?api_key=zG4Nmv7IC78maeigWZU0BtIY2UUQN8c4&q="+topic;
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=zG4Nmv7IC78maeigWZU0BtIY2UUQN8c4&q="+topic;
     $.ajax({
         url: queryURL,
         method:"GET"
@@ -48,16 +48,19 @@ $("#gifs").on("click", ".club", function() {
 })
 
 $("#submit-button").on("click", function() {
-    event.preventDefault()
-    $("#buttons").empty();
-    topics.push($("#new-input").val());
-    for (i=0; i < topics.length; i++) {
-        var butt = $("<button>");
-        butt.attr("class", "button");
-        butt.attr("topic", topics[i]);
-        butt.text(topics[i]);
-        butt.appendTo("#buttons");
+    event.preventDefault();
+    if ($("#new-input").val() != "") {
+        $("#buttons").empty();
+        topics.push($("#new-input").val());
+        for (i=0; i < topics.length; i++) {
+            var butt = $("<button>");
+            butt.attr("class", "button");
+            butt.attr("topic", topics[i]);
+            butt.text(topics[i]);
+            butt.appendTo("#buttons");
+        }
     }
+    $("#new-input").val("");
 });
 
 //under each gif, place its rating (g, pg, r)
