@@ -63,6 +63,10 @@ $("#submit-button").on("click", function() {
     $("#new-input").val("");
 });
 
+$("#new-input").on("click", function() {
+    $("#new-input").val("");
+});
+
 //under each gif, place its rating (g, pg, r)
 
 //onclick of gif, toggle between animate and still

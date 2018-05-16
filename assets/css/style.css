@@ -3,3 +3,21 @@ bottom position absolute */
 .rating {
     text-align: center;
 }
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    z-index: 100;
+    width: 100%;
+}
+
+#top {
+    position: fixed;
+    top: 0px;
+    z-index: 100;
+    width: 100%;
+}
+
+input {
+    width: 300px;
+}
