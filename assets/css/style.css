@@ -1,5 +1,3 @@
-/* header position absolute
-bottom position absolute */
 .rating {
     text-align: center;
 }
@@ -20,4 +18,15 @@ header {
 
 input {
     width: 300px;
+}
+
+.container {
+    position: relative;
+    margin-top: 100px;
+}
+
+.overlay {
+    color: white;
+    background-color: black;
+    width: 100%;
 }

@@ -1,4 +1,4 @@
-var topics = ["dota", "hearthstone", "stardew valley", "motorcycles", "skydiving", "kvothe"]
+var topics = ["dota", "hearthstone", "stardew valley", "motorcycles", "skydiving", "kvothe", "edc"]
 
 for (i=0; i < topics.length; i++) {
     var butt = $("<button>");
